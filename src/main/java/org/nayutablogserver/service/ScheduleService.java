@@ -9,4 +9,6 @@ public interface ScheduleService {
     List<Schedule> selectSchedule();
 
     int addSchedule(String title, Date startDate, Date endDate,String desc);
+
+    int delSchedule(Integer id);
 }

@@ -14,9 +14,14 @@ public interface  ArticleMapper {
     @Select("SELECT * FROM articles WHERE id = #{id}")
     Article selectArticleById(@Param("id") Integer id);
 
-    // 新增文章方法
+    // 新增文章
     @Insert("INSERT INTO articles(title, content, status, author_id, views, created_at, updated_at) " +
             "VALUES(#{title}, #{content}, 1, #{authorId}, 0, NOW(), NOW())")
     @Options(useGeneratedKeys = true, keyProperty = "id") // 获取自增ID
     int insertArticle(Article article);
+
+    //删除文章
+    @Update("UPDATE articles SET status = 0 where id = #{id} ")
+    int delArticle(Integer id);
+
 }

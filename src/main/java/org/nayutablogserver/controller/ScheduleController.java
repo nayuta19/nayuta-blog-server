@@ -1,6 +1,4 @@
 package org.nayutablogserver.controller;
-
-import org.nayutablogserver.entity.Article;
 import org.nayutablogserver.entity.Schedule;
 import org.nayutablogserver.pojo.Result;
 import org.nayutablogserver.service.ScheduleService;
@@ -41,4 +39,19 @@ public class ScheduleController {
         }
 
     }
+
+    @DeleteMapping("/{id}")
+    public Result delSchedule(@PathVariable Integer id) {
+        try {
+            int result =  scheduleService.delSchedule(id);
+            if (result > 0) {
+                return Result.success();
+            } else {
+                return Result.error();
+            }
+        } catch (Exception e) {
+            return Result.error();
+        }
+    }
+
 }

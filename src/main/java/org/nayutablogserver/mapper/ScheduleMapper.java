@@ -1,8 +1,5 @@
 package org.nayutablogserver.mapper;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.nayutablogserver.entity.Schedule;
 import java.util.List;
 
@@ -15,5 +12,9 @@ public interface ScheduleMapper {
     @Insert("INSERT INTO schedule(title, status, start_date, end_date) " +
             "VALUES(#{title}, 1, #{startDate}, #{endDate})")
     @Options(useGeneratedKeys = true, keyProperty = "id") // 获取自增ID
-   int addSchedule(Schedule schedule);
+    int addSchedule(Schedule schedule);
+
+    //删除日程
+    @Update("UPDATE schedule SET status = 0 where id = #{id} ")
+    int delSchedule(Integer id);
 }

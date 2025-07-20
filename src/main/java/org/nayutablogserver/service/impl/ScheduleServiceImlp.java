@@ -28,4 +28,9 @@ public class ScheduleServiceImlp implements ScheduleService {
         schedule.setDesc(desc);
         return scheduleMapper.addSchedule(schedule);
     }
+
+    @Override
+    public int delSchedule(Integer id) {
+        return scheduleMapper.delSchedule(id);
+    }
 }

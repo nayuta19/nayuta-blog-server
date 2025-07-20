@@ -26,8 +26,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public Result createArticle(
-            @RequestBody Article requestData) {
+    public Result createArticle( @RequestBody Article requestData) {
         try {
             int result = articleService.addArticle(requestData.getTitle(), requestData.getContent());
             if (result > 0) {
@@ -39,5 +38,19 @@ public class ArticleController {
             return Result.error();
         }
 
+    }
+
+    @DeleteMapping("/{id}")
+    public Result delArticle(@PathVariable Integer id) {
+        try {
+            int result =  articleService.delArticle(id);
+             if (result > 0) {
+                return Result.success();
+             } else {
+              return Result.error();
+             }
+        } catch (Exception e) {
+            return Result.error();
+        }
     }
 }
